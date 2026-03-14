@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader • Official</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --purple: #c026d3;
+            --pink: #ec4899;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .title-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(192, 38, 211, 0.15) 0%, transparent 70%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #c026d3, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .app-window {
+            box-shadow: 0 0 80px -20px #c026d3,
+                        0 25px 50px -12px rgb(0 0 0);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .app-window:hover {
+            transform: scale(1.03) rotate(1deg);
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #c026d3, #ec4899);
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-[#0a001f] text-white overflow-x-hidden">
+
+    <!-- SCROLL PROGRESS -->
+    <div id="scrollProgress" class="scroll-progress w-0"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-[#c026d3] to-[#ec4899] rounded-2xl flex items-center justify-center text-white font-bold text-2xl">VD</div>
+                <span class="title-font text-3xl font-semibold tracking-tighter">Video Downloader</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#features" class="hover:text-[#ec4899] transition-colors">Features</a>
+                <a href="#player" class="hover:text-[#ec4899] transition-colors">Player</a>
+                <a href="#ai" class="hover:text-[#ec4899] transition-colors">AI Magic</a>
+                <a href="#screenshots" class="hover:text-[#ec4899] transition-colors">Gallery</a>
+                <a href="#faq" class="hover:text-[#ec4899] transition-colors">FAQ</a>
+            </div>
+            
+            <a href="https://drive.google.com/uc?id=1RZazfbAhxt1LPeRHhg7eEyRkfX2ekgNA&export=download" 
+               target="_blank"
+               class="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#c026d3] to-[#ec4899] font-semibold hover:scale-105 transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+                <i class="fas fa-download"></i>
+                DOWNLOAD NOW
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="min-h-screen hero-bg relative flex items-center pt-20">
+        <!-- PARTICLES -->
+        <canvas id="particles" class="particle-canvas"></canvas>
+        
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-3xl text-sm">
+                    <div class="w-2 h-2 bg-[#ec4899] rounded-full animate-pulse"></div>
+                    ALPHA v0.9 • Still cooking 🔥
+                </div>
+                
+                <h1 class="title-font text-7xl md:text-8xl font-bold leading-none tracking-tighter">
+                    Download.<br>
+                    Watch.<br>
+                    <span class="gradient-text">Understand.</span>
+                </h1>
+                
+                <p class="text-2xl text-white/70 max-w-lg">
+                    The most beautiful video downloader with built-in AI subtitles (90% accuracy) and instant summarization. 
+                    YouTube • TikTok • Instagram • Facebook • 8K
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://drive.google.com/uc?id=1RZazfbAhxt1LPeRHhg7eEyRkfX2ekgNA&export=download" 
+                       target="_blank"
+                       class="px-10 py-5 rounded-3xl bg-white text-black font-semibold text-lg flex items-center gap-3 hover:shadow-2xl hover:shadow-purple-500/40 transition-all">
+                        <i class="fas fa-download"></i>
+                        Download for Windows / macOS / Linux
+                    </a>
+                    
+                    <a href="#screenshots" 
+                       class="px-10 py-5 rounded-3xl border border-white/30 hover:border-white/60 font-medium text-lg transition-all">
+                        See it in action →
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-8 text-sm">
+                    <div>
+                        <div class="text-[#ec4899] text-3xl font-semibold">8K</div>
+                        <div class="text-white/60">Maximum quality</div>
+                    </div>
+                    <div>
+                        <div class="text-[#ec4899] text-3xl font-semibold">90%</div>
+                        <div class="text-white/60">AI subtitle accuracy</div>
+                    </div>
+                    <div>
+                        <div class="text-[#ec4899] text-3xl font-semibold">100%</div>
+                        <div class="text-white/60">Offline after setup</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FLOATING APP WINDOW -->
+            <div class="relative hidden md:block">
+                <div class="app-window glass rounded-3xl p-4 max-w-[520px] mx-auto">
+                    <img src="assets/screenshot-main.png" 
+                         alt="Video Downloader UI" 
+                         class="rounded-2xl shadow-2xl w-full">
+                </div>
+                
+                <!-- floating badge -->
+                <div class="absolute -top-6 -right-6 glass px-6 py-3 rounded-2xl text-sm font-medium flex items-center gap-2 shadow-xl">
+                    <i class="fas fa-play text-[#ec4899]"></i>
+                    Built-in Player
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center text-white/50 text-xs tracking-widest">
+            SCROLL TO EXPLORE
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-white/30 to-transparent mt-3"></div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="max-w-screen-2xl mx-auto px-8 py-32">
+        <div class="text-center mb-16">
+            <div class="inline-block px-6 py-2 bg-white/5 rounded-3xl text-sm mb-4">POWERFUL FEATURES</div>
+            <h2 class="title-font text-6xl font-bold">Everything you need.<br>Nothing you don't.</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass rounded-3xl p-8 hover:scale-105 transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-6">📥</div>
+                <h3 class="text-3xl font-semibold mb-3">Download Anything</h3>
+                <p class="text-white/70">YouTube, TikTok, Instagram, Facebook. Up to 8K video + audio. Experimental formats included.</p>
+                <div class="mt-8 text-[#ec4899] text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Supported platforms <span class="text-2xl">→</span>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="glass rounded-3xl p-8 hover:scale-105 transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-6">🎥</div>
+                <h3 class="text-3xl font-semibold mb-3">Built-in Media Player</h3>
+                <p class="text-white/70">Resume exactly where you left off. Custom subtitle size. Load local files too. Feels like native.</p>
+                <div class="mt-8 text-[#ec4899] text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Never lose your progress <span class="text-2xl">→</span>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="glass rounded-3xl p-8 hover:scale-105 transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-6">🧠</div>
+                <h3 class="text-3xl font-semibold mb-3">AI That Actually Works</h3>
+                <p class="text-white/70">90% accurate subtitles + instant video summarization. Perfect for podcasts and lectures. Local models only.</p>
+                <div class="mt-8 text-[#ec4899] text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                    No cloud. Pure privacy <span class="text-2xl">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI SECTION -->
+    <section id="ai" class="bg-black/40 py-32">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div>
+                    <div class="text-[#ec4899] text-sm tracking-widest mb-3">LOCAL AI POWER</div>
+                    <h2 class="title-font text-6xl font-bold leading-none">Subtitles + Summaries<br>in seconds</h2>
+                    <p class="mt-8 text-xl text-white/70 max-w-md">
+                        Two experimental AI features that run completely offline after you install the models once.
+                    </p>
+                    <ul class="mt-10 space-y-6 text-lg">
+                        <li class="flex gap-4"><span class="text-[#ec4899]">01</span> Whisper-based subtitles (90% accuracy)</li>
+                        <li class="flex gap-4"><span class="text-[#ec4899]">02</span> One-click video summary (perfect for long lectures)</li>
+                        <li class="flex gap-4"><span class="text-[#ec4899]">03</span> Adjustable subtitle size &amp; styling</li>
+                    </ul>
+                </div>
+                <div class="glass rounded-3xl p-2">
+                    <img src="assets/screenshot-settings.png" class="rounded-3xl" alt="Settings">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAYER DEMO -->
+    <section id="player" class="max-w-screen-2xl mx-auto px-8 py-32">
+        <div class="text-center mb-16">
+            <h2 class="title-font text-6xl font-bold">The player you’ll actually use</h2>
+            <p class="text-white/60 mt-4">Resume playback • Custom subtitles • Local files • Beautiful UI</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto glass rounded-3xl overflow-hidden">
+            <img src="assets/screenshot-player-side.png" class="w-full" alt="Media Player">
+        </div>
+        
+        <div class="text-center mt-12">
+            <img src="assets/screenshot-player-full.png" class="max-w-md mx-auto rounded-3xl shadow-2xl" alt="Fullscreen Player">
+        </div>
+    </section>
+
+    <!-- SCREENSHOTS GALLERY -->
+    <section id="screenshots" class="py-32 bg-black/30">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="title-font text-5xl font-bold text-center mb-16">It looks this good</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <img src="assets/screenshot-main.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Main UI">
+                <img src="assets/screenshot-faq.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="FAQ">
+                <img src="assets/screenshot-settings.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Settings">
+                <img src="assets/screenshot-advanced.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Advanced Settings">
+                <img src="assets/screenshot-player-side.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Player">
+                <img src="assets/screenshot-player-full.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Fullscreen">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="max-w-screen-2xl mx-auto px-8 py-32">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="title-font text-6xl font-bold text-center mb-16">FAQ &amp; Help Center</h2>
+            
+            <div class="space-y-4">
+                <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
+                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-medium">Download Issues</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="answer hidden mt-6 text-white/70">
+                        Most issues are solved by choosing a different browser in settings. Also check your antivirus — it sometimes blocks the app.
+                    </div>
+                </div>
+                
+                <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
+                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-medium">Media Player</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="answer hidden mt-6 text-white/70">
+                        Playback progress is saved automatically. You can load any local video/audio file too.
+                    </div>
+                </div>
+                
+                <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
+                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-medium">AI Subtitles &amp; Summarization</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="answer hidden mt-6 text-white/70">
+                        You need to download the AI models once (about 1–2 GB). After that everything works offline.
+                    </div>
+                </div>
+                
+                <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
+                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-medium">Experimental Features</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="answer hidden mt-6 text-white/70">
+                        Advanced format options and some TikTok/Instagram handlers are marked “Experimental”. They work for most users.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/80 py-20 border-t border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <div class="flex justify-center gap-3 mb-8">
+                <div class="w-9 h-9 bg-gradient-to-br from-[#c026d3] to-[#ec4899] rounded-2xl flex items-center justify-center text-3xl">VD</div>
+            </div>
+            
+            <p class="text-white/60 text-sm">
+                Video Downloader © 2026 • Still in heavy alpha<br>
+                Private repo: <a href="https://github.com/NiceTryJony/Video-Downloader" class="text-[#ec4899] hover:underline">github.com/NiceTryJony/Video-Downloader</a>
+            </p>
+            
+            <div class="mt-12 text-xs text-white/40">
+                Made with love and too many late nights • 
+                <span class="text-[#ec4899]">Ready for GitHub Pages</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script
+        tailwind.config = {
+            content: ["*"],
+            theme: {
+                extend: {}
+            }
+        }
+
+        // Particles
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(236, 72, 153, 0.6)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 120; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 120) {
+                        ctx.strokeStyle = `rgba(192, 38, 211, ${0.15 - distance/800})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        
+        window.addEventListener('resize', () => {
+            resize();
+            initParticles();
+        });
+        
+        // Init everything
+        window.onload = () => {
+            resize();
+            initParticles();
+            animateParticles();
+            
+            // Scroll progress
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("scrollProgress").style.width = scrolled + "%";
+            });
+            
+            // Smooth scroll for nav
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') === '#') return;
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        };
+        
+        // Clickable FAQ arrows rotate (simple)
+        console.log('%cVideo Downloader Site ready for GitHub Pages 🚀', 'color:#ec4899; font-size:16px; font-weight:bold');
+    </script>
+</body>
+</html>
