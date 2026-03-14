@@ -6,6 +6,10 @@
     <title>Video Downloader • Official</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <meta property="og:title" content="Video Downloader">
+    <meta property="og:description" content="Beautiful video downloader with AI subtitles">
+    <meta property="og:image" content="assets/screenshot-main.png">
+    <meta property="og:type" content="website">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
         
@@ -18,6 +22,10 @@
             font-family: 'Inter', system_ui, sans-serif;
         }
         
+        p {
+            max-width: 65ch;
+        }
+
         .title-font {
             font-family: 'Space Grotesk', sans-serif;
         }
@@ -66,6 +74,17 @@
             background: linear-gradient(to right, #c026d3, #ec4899);
             z-index: 50;
         }
+
+        .reveal {
+            opacity:0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            }
+
+            .reveal.visible {
+            opacity:1;
+            transform: translateY(0);
+            }
     </style>
 </head>
 <body class="bg-[#0a001f] text-white overflow-x-hidden">
@@ -110,18 +129,18 @@
                     ALPHA v0.9 • Still cooking 🔥
                 </div>
                 
-                <h1 class="title-font text-7xl md:text-8xl font-bold leading-none tracking-tighter">
+                <h1 class="title-font text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tighter">
                     Download.<br>
                     Watch.<br>
                     <span class="gradient-text">Understand.</span>
                 </h1>
                 
-                <p class="text-2xl text-white/70 max-w-lg">
+                <p class="text-lg sm:text-xl md:text-2xl">
                     The most beautiful video downloader with built-in AI subtitles (90% accuracy) and instant summarization. 
                     YouTube • TikTok • Instagram • Facebook • 8K
                 </p>
                 
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col sm:flex-row gap-4">
                     <a href="https://drive.google.com/uc?id=1RZazfbAhxt1LPeRHhg7eEyRkfX2ekgNA&export=download" 
                        target="_blank"
                        class="px-10 py-5 rounded-3xl bg-white text-black font-semibold text-lg flex items-center gap-3 hover:shadow-2xl hover:shadow-purple-500/40 transition-all">
@@ -156,7 +175,7 @@
                 <div class="app-window glass rounded-3xl p-4 max-w-[520px] mx-auto">
                     <img src="assets/screenshot-main.png" 
                          alt="Video Downloader UI" 
-                         class="rounded-2xl shadow-2xl w-full">
+                         class="rounded-2xl shadow-2xl w-full" loading="lazy">
                 </div>
                 
                 <!-- floating badge -->
@@ -174,13 +193,13 @@
     </section>
 
     <!-- FEATURES -->
-    <section id="features" class="max-w-screen-2xl mx-auto px-8 py-32">
+    <section id="features" class="max-w-screen-2xl mx-auto px-6 sm:px-8 py-32">
         <div class="text-center mb-16">
             <div class="inline-block px-6 py-2 bg-white/5 rounded-3xl text-sm mb-4">POWERFUL FEATURES</div>
             <h2 class="title-font text-6xl font-bold">Everything you need.<br>Nothing you don't.</h2>
         </div>
         
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3">
             <!-- Card 1 -->
             <div class="glass rounded-3xl p-8 hover:scale-105 transition-all group">
                 <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-6">📥</div>
@@ -215,7 +234,7 @@
 
     <!-- AI SECTION -->
     <section id="ai" class="bg-black/40 py-32">
-        <div class="max-w-screen-2xl mx-auto px-8">
+        <div class="max-w-screen-2xl mx-auto px-6 sm:px-8">
             <div class="grid md:grid-cols-2 gap-20 items-center">
                 <div>
                     <div class="text-[#ec4899] text-sm tracking-widest mb-3">LOCAL AI POWER</div>
@@ -230,52 +249,52 @@
                     </ul>
                 </div>
                 <div class="glass rounded-3xl p-2">
-                    <img src="assets/screenshot-settings.png" class="rounded-3xl" alt="Settings">
+                    <img src="assets/sxreebshot-subtitles.png" class="rounded-3xl" alt="Settings" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PLAYER DEMO -->
-    <section id="player" class="max-w-screen-2xl mx-auto px-8 py-32">
+    <section id="player" class="max-w-screen-2xl mx-auto px-6 sm:px-8 py-32">
         <div class="text-center mb-16">
             <h2 class="title-font text-6xl font-bold">The player you’ll actually use</h2>
             <p class="text-white/60 mt-4">Resume playback • Custom subtitles • Local files • Beautiful UI</p>
         </div>
         
         <div class="max-w-4xl mx-auto glass rounded-3xl overflow-hidden">
-            <img src="assets/screenshot-player-side.png" class="w-full" alt="Media Player">
+            <img src="assets/screenshot-player-side.png" class="w-full" alt="Media Player" loading="lazy">
         </div>
         
         <div class="text-center mt-12">
-            <img src="assets/screenshot-player-full.png" class="max-w-md mx-auto rounded-3xl shadow-2xl" alt="Fullscreen Player">
+            <img src="assets/screenshot-player-full.png" class="max-w-md mx-auto rounded-3xl shadow-2xl" alt="Fullscreen Player" loading="lazy">
         </div>
     </section>
 
     <!-- SCREENSHOTS GALLERY -->
     <section id="screenshots" class="py-32 bg-black/30">
-        <div class="max-w-screen-2xl mx-auto px-8">
+        <div class="max-w-screen-2xl mx-auto px-6 sm:px-8">
             <h2 class="title-font text-5xl font-bold text-center mb-16">It looks this good</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <img src="assets/screenshot-main.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Main UI">
-                <img src="assets/screenshot-faq.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="FAQ">
-                <img src="assets/screenshot-settings.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Settings">
-                <img src="assets/screenshot-advanced.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Advanced Settings">
-                <img src="assets/screenshot-player-side.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Player">
-                <img src="assets/screenshot-player-full.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Fullscreen">
+                <img src="assets/screenshot-main.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Main UI" loading="lazy">
+                <img src="assets/screenshot-faq.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="FAQ" loading="lazy">
+                <img src="assets/screenshot-settings.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Settings" loading="lazy">
+                <img src="assets/screenshot-advanced.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Advanced Settings" loading="lazy">
+                <img src="assets/screenshot-player-side.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Player" loading="lazy">
+                <img src="assets/screenshot-player-full.png" class="rounded-3xl shadow-2xl hover:scale-105 transition-all" alt="Fullscreen" loading="lazy">
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="max-w-screen-2xl mx-auto px-8 py-32">
+    <section id="faq" class="max-w-screen-2xl mx-auto px-6 sm:px-8 py-32">
         <div class="max-w-3xl mx-auto">
             <h2 class="title-font text-6xl font-bold text-center mb-16">FAQ &amp; Help Center</h2>
             
             <div class="space-y-4">
                 <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
-                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                     class="glass rounded-3xl px-6 sm:px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-medium">Download Issues</span>
                         <i class="fas fa-chevron-down transition-transform"></i>
@@ -286,7 +305,7 @@
                 </div>
                 
                 <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
-                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                     class="glass rounded-3xl px-6 sm:px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-medium">Media Player</span>
                         <i class="fas fa-chevron-down transition-transform"></i>
@@ -297,7 +316,7 @@
                 </div>
                 
                 <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
-                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                     class="glass rounded-3xl px-6 sm:px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-medium">AI Subtitles &amp; Summarization</span>
                         <i class="fas fa-chevron-down transition-transform"></i>
@@ -308,7 +327,7 @@
                 </div>
                 
                 <div onclick="this.querySelector('.answer').classList.toggle('hidden')" 
-                     class="glass rounded-3xl px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
+                     class="glass rounded-3xl px-6 sm:px-8 py-6 cursor-pointer hover:bg-white/10 transition-all">
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-medium">Experimental Features</span>
                         <i class="fas fa-chevron-down transition-transform"></i>
@@ -323,7 +342,7 @@
 
     <!-- FOOTER -->
     <footer class="bg-black/80 py-20 border-t border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+        <div class="max-w-screen-2xl mx-auto px-6 sm:px-8 text-center">
             <div class="flex justify-center gap-3 mb-8">
                 <div class="w-9 h-9 bg-gradient-to-br from-[#c026d3] to-[#ec4899] rounded-2xl flex items-center justify-center text-3xl">VD</div>
             </div>
@@ -383,10 +402,28 @@
         
         function initParticles() {
             particles = [];
-            for (let i = 0; i < 120; i++) {
+            const particleCount = window.innerWidth < 768 ? 40 : 120;
+
+            for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
         }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!reduceMotion) {
+            animateParticles();
+        }
+
+        const observer = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+        if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        }
+        });
+        });
+
+        document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
         
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
